@@ -4,13 +4,14 @@ namespace App\Http\Controllers;
 
 use JWTAuth;
 use App\Models\User;
-use App\Models\Command;
+use App\Models\Qr;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\Command as CommandResource;
 use App\Http\Resources\User as UserResource;
+use App\Facades\Command;
 
 class AuthController extends BaseController
 {
@@ -125,8 +126,8 @@ class AuthController extends BaseController
     }
 
     public function command(Request $request){
-        $commands = Command::all();
-        return $this->sendResponse(CommandResource::collection($commands), 'Products retrieved successfully.');
+        $commands = Command::getallCommand();
+        return $this->sendResponse($commands, 'Products retrieved successfully.');
     }
 
     public function user(Request $request){
@@ -134,17 +135,54 @@ class AuthController extends BaseController
         return $this->sendResponse(UserResource::collection($users), 'Products retrieved successfully.');
     }
 
-    public function user1(Request $request){
-        return view('welcome',['name' => 'Dima']);
+    public function getQrId($id = null){
+        if(!$id){
+            $questions = [
+                ['question' => 'Вопрос 1', 'options' => 'вариант 1,вариант 2,вариант 3'],
+                ['question' => 'Вопрос 2', 'options' => 'вариант 1,вариант 2,вариант 3'],
+                ['question' => 'Вопрос 3', 'options' => 'вариант 1,вариант 2,вариант 3'],
+                ['question' => 'Вопрос 4', 'options' => 'вариант 1,вариант 2,вариант 3'],
+                ['question' => 'Вопрос 5', 'options' => 'вариант 1,вариант 2,вариант 3'],
+                ['question' => 'Вопрос 6', 'options' => 'вариант 1,вариант 2,вариант 3'],
+                ['question' => 'Вопрос 7', 'options' => 'вариант 1,вариант 2,вариант 3']
+            ];
+
+            $answers = [
+                'Ответ 1',
+                'Ответ 2',
+                'Ответ 3',
+                'Ответ 4',
+                'Ответ 5',
+                'Ответ 6',
+                'Ответ 7'
+            ];
+
+            $question = $questions[array_rand($questions)];
+            $answer =  $answers[array_rand($answers)];
+            $qr = Qr::create(['question' => $question['question'], 'options' => $question['options'], 'answer' => $answer]);
+        }else{
+            $qr = Qr::find($id);
+        }
+        return $this->sendResponse($qr,'qr');
     }
 
-    public function user2(Request $request){
-        $users = User::all();
-        return $this->sendResponse(UserResource::collection($users), 'Products retrieved successfully.');
+    public function setScan($id){
+        Qr::where('id',$id)->update(['isScanQr'=> true]);
+        return redirect()->away('http://localhost:8080/question-client/'. $id);
     }
 
-    public function user3(Request $request){
-        $users = User::all();
-        return $this->sendResponse(UserResource::collection($users), 'Products retrieved successfully.');
+    public function setReplied($id){
+        Qr::where('id',$id)->update(['isReplied'=> true]);
+        return $this->sendResponse('success','qr');
+    }
+
+    public function getStatusQr($id){
+        $qr = Qr::find($id);
+        return $this->sendResponse($qr['isScanQr'],'qr');
+    }
+
+    public function getStatusReplied($id){
+      $qr = Qr::find($id);
+      return $this->sendResponse($qr['isReplied'],'qr');
     }
 }

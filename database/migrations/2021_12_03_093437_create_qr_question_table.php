@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCommandsTable extends Migration
+class CreateQrQuestionTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateCommandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('commands', function (Blueprint $table) {
+        Schema::create('qr_question', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('maxCount')->unsigned();
-            $table->integer('currentCount')->unsigned();
-            $table->string('name');
+            $table->string('question');
+            $table->string('options');
+            $table->string('answer');
+            $table->boolean('isScanQr')->default(0);
+            $table->boolean('isReplied')->default(0);
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateCommandsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('commands');
+        Schema::dropIfExists('qr_question');
     }
 }
