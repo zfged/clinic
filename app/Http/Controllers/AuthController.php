@@ -168,7 +168,7 @@ class AuthController extends BaseController
 
     public function setScan($id){
         Qr::where('id',$id)->update(['isScanQr'=> true]);
-        return redirect()->away('http://localhost:8080/question-client/'. $id);
+        return redirect()->away('https://samotuzhka.fun/question-client/'. $id);
     }
 
     public function setReplied($id){
