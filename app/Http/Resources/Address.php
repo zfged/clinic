@@ -4,7 +4,7 @@ namespace App\Http\Resources;
    
 use Illuminate\Http\Resources\Json\JsonResource;
    
-class User extends JsonResource
+class Address extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,15 +16,10 @@ class User extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'address' => $this->address,
-            'centers' => $this->centers,
-            'secondName' => $this->secondName,
-            'patronymic' => $this->patronymic,
-            'birthday' => $this->birthday,
-            'phone' => $this->phone,
-            'birthday' => $this->birthday,
+            'city' => $this->city,
+            'street' => $this->street,
+            'number' => $this->number,
+            'zipCode' => $this->zipCode,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];

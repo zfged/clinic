@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateQrQuestionTable extends Migration
+class CreateUserCenterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,10 @@ class CreateQrQuestionTable extends Migration
      */
     public function up()
     {
-        Schema::create('qr_question', function (Blueprint $table) {
+        Schema::create('center_user', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('question');
-            $table->string('options');
-            $table->string('answer');
-            $table->boolean('isScanQr')->default(0);
-            $table->boolean('isReplied')->default(0);
+            $table->integer('center_id')->unsigned();
+            $table->integer('user_id')->unsigned();
             $table->timestamps();
         });
     }
@@ -31,6 +28,6 @@ class CreateQrQuestionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('qr_question');
+        Schema::dropIfExists('center_user');
     }
 }

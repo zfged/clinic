@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Qr extends Model
+class Address extends Model
 {
     use HasFactory;
     /**
@@ -13,12 +13,10 @@ class Qr extends Model
      *
      * @var string[]
      */
-    protected $table = 'qr_question';
     protected $fillable = [
-        'question',
-        'options',
-        'answer',
-        'isScanQr',
-        'isReplied'
+        'city',
+        'street',
+        'number',
+        'zipCode'
     ];
 }

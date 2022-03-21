@@ -4,7 +4,7 @@ namespace App\Http\Resources;
    
 use Illuminate\Http\Resources\Json\JsonResource;
    
-class Command extends JsonResource
+class Centers extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +16,9 @@ class Command extends JsonResource
     {
         return [
             'id' => $this->id,
-            'maxCount' => $this->maxCount,
-            'currentCount' => $this->currentCount,
+            'name' => $this->name,
+            'phone' => $this->phone,
+            'addition' => $this->addition,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];
