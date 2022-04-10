@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserCenterTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateUserCenterTable extends Migration
      */
     public function up()
     {
-        Schema::create('center_user', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('center_id')->unsigned();
-            $table->integer('user_id')->unsigned();
+        Schema::create('services', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+            $table->string('during');
+            $table->string('cost');
+            $table->string('color');
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateUserCenterTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('center_user');
+        Schema::dropIfExists('services');
     }
 }
