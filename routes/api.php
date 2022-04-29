@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CentersController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\CollaboratorController;
 
 
 Route::post('login', [AuthController::class, 'authenticate']);
@@ -14,8 +15,8 @@ Route::get('logout', [AuthController::class, 'logout']);
 // Route::group(['middleware' => ['jwt.verify','role:ROLE_ADMIN']], function() {
     Route::resource('users', UserController::class);
     Route::resource('centers', CentersController::class);
-    Route::resource('services', UserController::class);
-    Route::resource('collaborator', UserController::class);
+    Route::resource('services', ServicesController::class);
+    Route::resource('collaborator', CollaboratorController::class);
 // });
 
 // Route::get('services', [ServicesController::class, 'index']);
