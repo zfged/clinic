@@ -35,8 +35,6 @@ class ServicesController extends BaseController
     
     public function update(Request $request, Service $service)
     {
-        var_dump($input);
-        exit();
         $input = $request->all();
         $validator = Validator::make($input, [
             'name' => 'required',

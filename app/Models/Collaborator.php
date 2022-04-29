@@ -21,14 +21,4 @@ class Collaborator extends Model
         'birth',
         'bio'
     ];
-
-    public function address()
-    {
-        return $this->belongsTo(Address::class, 'address_id', 'id');
-    }
-
-    public function users()
-    {
-        return $this->belongsToMany(User::class);
-    }
 }
