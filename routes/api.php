@@ -14,15 +14,17 @@ Route::get('logout', [AuthController::class, 'logout']);
 // Route::group(['middleware' => ['jwt.verify','role:ROLE_ADMIN']], function() {
     Route::resource('users', UserController::class);
     Route::resource('centers', CentersController::class);
+    Route::resource('services', UserController::class);
+    Route::resource('collaborator', UserController::class);
 // });
 
-Route::get('services', [ServicesController::class, 'index']);
-Route::post('services', [ServicesController::class, 'store']);
-Route::put('services/{id}', [ServicesController::class, 'update']);
-Route::delete('services/{id}', [ServicesController::class, 'destroy']);
+// Route::get('services', [ServicesController::class, 'index']);
+// Route::post('services', [ServicesController::class, 'store']);
+// Route::put('services/{id}', [ServicesController::class, 'update']);
+// Route::delete('services/{id}', [ServicesController::class, 'destroy']);
 
 
-Route::get('collaborator', [CollaboratorController::class, 'index']);
-Route::post('collaborator', [CollaboratorController::class, 'store']);
-Route::put('collaborator/{id}', [CollaboratorController::class, 'update']);
-Route::delete('collaborator/{id}', [CollaboratorController::class, 'destroy']);
+// Route::get('collaborator', [CollaboratorController::class, 'index']);
+// Route::post('collaborator', [CollaboratorController::class, 'store']);
+// Route::put('collaborator/{id}', [CollaboratorController::class, 'update']);
+// Route::delete('collaborator/{id}', [CollaboratorController::class, 'destroy']);
