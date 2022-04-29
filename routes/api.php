@@ -16,9 +16,13 @@ Route::get('logout', [AuthController::class, 'logout']);
     Route::resource('centers', CentersController::class);
 // });
 
-// Route::get('services', [ServicesController::class, 'index']);
-// Route::post('services', [ServicesController::class, 'store']);
-// Route::put('services/{id}', [ServicesController::class, 'update']);
-// Route::delete('services/{id}', [ServicesController::class, 'destroy']);
+Route::get('services', [ServicesController::class, 'index']);
+Route::post('services', [ServicesController::class, 'store']);
+Route::put('services/{id}', [ServicesController::class, 'update']);
+Route::delete('services/{id}', [ServicesController::class, 'destroy']);
 
-Route::resource('services', ServicesController::class);
+
+Route::get('collaborator', [CollaboratorController::class, 'index']);
+Route::post('collaborator', [CollaboratorController::class, 'store']);
+Route::put('collaborator/{id}', [CollaboratorController::class, 'update']);
+Route::delete('collaborator/{id}', [CollaboratorController::class, 'destroy']);
