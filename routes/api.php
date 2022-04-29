@@ -20,3 +20,9 @@ Route::get('services', [ServicesController::class, 'index']);
 Route::post('services', [ServicesController::class, 'store']);
 Route::put('services/{id}', [ServicesController::class, 'update']);
 Route::delete('services/{id}', [ServicesController::class, 'destroy']);
+
+
+Route::get('collaborator', [CollaboratorController::class, 'index']);
+Route::post('collaborator', [CollaboratorController::class, 'store']);
+Route::put('collaborator/{id}', [CollaboratorController::class, 'update']);
+Route::delete('collaborator/{id}', [CollaboratorController::class, 'destroy']);
